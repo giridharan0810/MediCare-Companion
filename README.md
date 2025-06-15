@@ -1,5 +1,7 @@
 # 💊 MediCare Companion
 
+[🔗 **Live Demo**](https://medi-care-companion.vercel.app/)
+
 A React + TypeScript medication management app with dual user roles (Patients and Caretakers), built using Supabase and React Query. This version completes **Phase 1** of the implementation, covering full authentication and medication tracking with real-time dashboard integration.
 
 ---
@@ -13,8 +15,8 @@ A React + TypeScript medication management app with dual user roles (Patients an
   Basic runtime switching between Patient and Caretaker views for simplicity.
 
 - 💊 **Medication Management (CRUD)**  
-  - Add medications (name, dosage, frequency)
-  - View medication list
+  - Add medications (name, dosage, frequency)  
+  - View medication list  
   - Mark medication as “taken today”
 
 - 📊 **Dashboard with Real Data**  
