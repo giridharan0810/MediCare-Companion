@@ -1,15 +1,36 @@
-
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, User, Heart } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Users, User, Heart, LogOut } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
 
 interface OnboardingProps {
   onComplete: (userType: "patient" | "caretaker") => void;
 }
 
 const Onboarding = ({ onComplete }: OnboardingProps) => {
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.reload(); // optional, resets state and returns to login
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center p-6 relative">
+      {/* Logout Button (Top Right) */}
+      <Button
+        variant="outline"
+        className="absolute top-4 right-4 flex items-center gap-2 text-red-600 border-red-400 hover:bg-red-50"
+        onClick={handleLogout}
+      >
+        <LogOut className="w-4 h-4" />
+        Logout
+      </Button>
+
       <div className="max-w-4xl w-full">
         <div className="text-center mb-12">
           <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -24,6 +45,7 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Patient Card */}
           <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-200 cursor-pointer">
             <CardHeader className="text-center pb-4">
               <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
@@ -62,6 +84,7 @@ const Onboarding = ({ onComplete }: OnboardingProps) => {
             </CardContent>
           </Card>
 
+          {/* Caretaker Card */}
           <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-green-200 cursor-pointer">
             <CardHeader className="text-center pb-4">
               <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
