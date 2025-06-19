@@ -52,7 +52,7 @@ const AuthForm = () => {
           setError(error.message);
         } else {
           console.log("✅ Sign up successful");
-          navigate("/dashboard");
+          navigate("/");
         }
       }
     } catch (err) {
